@@ -48,7 +48,6 @@ document.getElementById("searchForm").addEventListener("submit",function(e){
  let link=document.createElement("a");
  link.href="https://www.tiktok.com/@" + encodeURIComponent(username);
  link.textContent="Open public TikTok profile: @" + username;
- link.target="_blank";
  link.rel="noopener";
  let result=document.getElementById("result");
  result.replaceChildren(link);
