@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KBReal Love</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b12;color:white;font-family:Arial,sans-serif}
+header{padding:20px;text-align:center;background:#15101c}
+h1{color:#ff2378}
+.card{margin:15px;padding:18px;background:#151d2b;border-radius:15px}
+button{background:#ff2378;color:white;border:0;padding:12px;border-radius:10px}
+input{padding:12px;border-radius:8px;border:1px solid #555;background:#0b111b;color:white;width:100%}
+a{color:#ff5595}
+</style>
+</head>
+<body>
+<header>
+<h1>❤️ KBReal Love</h1>
+<p>Share Love • Create Memories</p>
+</header>
+<div class="card">
+<h2>Welcome!</h2>
+<p>Connect with friends and share your moments.</p>
+</div>
+<div class="card">
+<h3>🔎 Find a TikTok Profile</h3>
+<form id="searchForm">
+<input id="username" placeholder="Enter TikTok username" required>
+<br><br><button type="submit">Search</button>
+</form>
+<p id="result"></p>
+</div>
+<div class="card">
+<h3>🎬 Share your videos</h3>
+<p>Video upload will be added in the next step.</p>
+</div>
+<div class="card">
+<h3>💬 Messages</h3>
+<p>Chat feature will be added next.</p>
+</div>
+<script>
+document.getElementById("searchForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ let username=document.getElementById("username").value.trim().replace(/^@/,"");
+ if(!username)return;
+ let link=document.createElement("a");
+ link.href="https://www.tiktok.com/@" + encodeURIComponent(username);
+ link.textContent="Open public TikTok profile: @" + username;
+ link.target="_blank";
+ link.rel="noopener";
+ let result=document.getElementById("result");
+ result.replaceChildren(link);
+});
+</script>
+</body>
+</html>
