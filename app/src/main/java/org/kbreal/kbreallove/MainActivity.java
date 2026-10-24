@@ -22,8 +22,7 @@ public class MainActivity extends Activity {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
-        settings.setSupportMultipleWindows(true);
-        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setSupportMultipleWindows(false);
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -32,7 +31,8 @@ public class MainActivity extends Activity {
                 String url = request.getUrl().toString();
 
                 if (url.startsWith("https://www.tiktok.com/") ||
-                    url.startsWith("https://tiktok.com/")) {
+                    url.startsWith("https://tiktok.com/") ||
+                    url.startsWith("https://m.tiktok.com/")) {
                     try {
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                         startActivity(intent);
@@ -45,26 +45,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        webView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public boolean onCreateWindow(
-                    WebView view, boolean isDialog,
-                    boolean isUserGesture, android.os.Message resultMsg) {
-                WebView.HitTestResult hit = view.getHitTestResult();
-                String url = hit.getExtra();
-
-                if (url != null && url.startsWith("https://")) {
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                        return false;
-                    } catch (Exception e) {
-                        return false;
-                    }
-                }
-                return false;
-            }
-        });
-
+        webView.setWebChromeClient(new WebChromeClient());
         setContentView(webView);
         webView.loadUrl("file:///android_asset/index.html");
     }
