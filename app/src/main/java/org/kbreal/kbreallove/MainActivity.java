@@ -1,4 +1,4 @@
-+package org.kbreal.kbreallove;
+package org.kbreal.kbreallove;
 
 import android.app.Activity;
 import android.os.Bundle;
