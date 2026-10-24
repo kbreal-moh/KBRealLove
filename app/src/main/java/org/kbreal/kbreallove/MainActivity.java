@@ -1,4 +1,4 @@
-package org.kbreal.kbreallove;
++package org.kbreal.kbreallove;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
                     url.startsWith("https://m.tiktok.com/")) {
                     try {
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        intent.setPackage("com.android.chrome");
                         startActivity(intent);
                         return true;
                     } catch (Exception e) {
