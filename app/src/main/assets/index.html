@@ -41,17 +41,35 @@ a{color:#ff5595}
 <p>Chat feature will be added next.</p>
 </div>
 <script>
-document.getElementById("searchForm").addEventListener("submit",function(e){
- e.preventDefault();
- let username=document.getElementById("username").value.trim().replace(/^@/,"");
- if(!username)return;
- let link=document.createElement("a");
- link.href="https://www.tiktok.com/@" + encodeURIComponent(username);
- link.textContent="Open public TikTok profile: @" + username;
- link.rel="noopener";
- let result=document.getElementById("result");
- result.replaceChildren(link);
+document.getElementById("searchForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username")
+        .value.trim().replace(/^@/, "");
+
+    if (!/^[a-zA-Z0-9._]+$/.test(username)) {
+        document.getElementById("result").textContent =
+            "Please enter a valid TikTok username.";
+        return;
+    }
+
+    const result = document.getElementById("result");
+    result.textContent = "";
+
+    const link = document.createElement("a");
+    link.href = "https://www.tiktok.com/@" + encodeURIComponent(username);
+    link.textContent = "Open TikTok profile: @" + username;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    result.appendChild(link);
+
+    const message = document.createElement("p");
+    message.textContent =
+        "Tap the link to check the profile on TikTok. This app cannot verify whether the account exists.";
+    result.appendChild(message);
 });
 </script>
 </body>
 </html>
++
